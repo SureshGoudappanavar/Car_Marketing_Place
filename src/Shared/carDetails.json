@@ -1,0 +1,89 @@
+{
+    "carDetails": [
+      {
+        "label": "Vehicle Model",
+        "name": "vehicleModel",
+        "fieldType": "text",
+        "required": true,
+        "column": 1,
+        "icon": "car-sport"
+      },
+      {
+        "label": "Fuel Type",
+        "name": "fuelType",
+        "fieldType": "text",
+        "required": true,
+        "column": 1,
+        "icon": "gas-pump"
+      },
+      {
+        "label": "Transmission Type",
+        "name": "transmission",
+        "fieldType": "dropdown",
+        "required": true,
+        "column": 1,
+        "icon": "cogs",
+        "options": ["Automatic", "Manual", "Semi-Automatic", "CVT"]
+      },
+      {
+        "label": "Price (in USD)",
+        "name": "price",
+        "fieldType": "number",
+        "required": true,
+        "column": 2,
+        "icon": "money-bill"
+      },
+      {
+        "label": "Mileage (in km)",
+        "name": "mileage",
+        "fieldType": "number",
+        "required": true,
+        "column": 2,
+        "icon": "tachometer"
+      },
+      {
+        "label": "Year of Manufacture",
+        "name": "year",
+        "fieldType": "number",
+        "required": true,
+        "column": 2,
+        "icon": "calendar-alt"
+      },
+      {
+        "label": "Exterior Color",
+        "name": "color",
+        "fieldType": "text",
+        "required": false,
+        "column": 1,
+        "icon": "palette"
+      },
+      {
+        "label": "Number of Doors",
+        "name": "doors",
+        "fieldType": "dropdown",
+        "required": false,
+        "column": 1,
+        "icon": "door-open",
+        "options": ["2", "3", "4", "5"]
+      },
+      {
+        "label": "Seating Capacity",
+        "name": "seats",
+        "fieldType": "dropdown",
+        "required": false,
+        "column": 1,
+        "icon": "users",
+        "options": ["2", "4", "5", "7", "8"]
+      },
+      {
+        "label": "Vehicle Description",
+        "name": "description",
+        "fieldType": "textarea",
+        "required": false,
+        "column": 2,
+        "icon": "clipboard"
+      }
+    ]
+  }
+  
+  

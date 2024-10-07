@@ -1,0 +1,82 @@
+{
+    "features": [
+      {
+        "label": "Make",
+        "name": "make",
+        "fieldType": "text"
+      },
+      {
+        "label": "Model",
+        "name": "model",
+        "fieldType": "text"
+      },
+      {
+        "label": "Year",
+        "name": "year",
+        "fieldType": "number"
+      },
+      {
+        "label": "Color",
+        "name": "color",
+        "fieldType": "text"
+      },
+      {
+        "label": "Engine Type",
+        "name": "engine_type",
+        "fieldType": "dropdown",
+        "options": ["Petrol", "Diesel", "Electric", "Hybrid"]
+      },
+      {
+        "label": "Transmission",
+        "name": "transmission",
+        "fieldType": "dropdown",
+        "options": ["Manual", "Automatic", "Semi-Automatic"]
+      },
+      {
+        "label": "Fuel Efficiency (mpg)",
+        "name": "fuel_efficiency",
+        "fieldType": "number"
+      },
+      {
+        "label": "Horsepower",
+        "name": "horsepower",
+        "fieldType": "number"
+      },
+      {
+        "label": "Number of Seats",
+        "name": "seats",
+        "fieldType": "number"
+      },
+      {
+        "label": "Sunroof",
+        "name": "sunroof",
+        "fieldType": "boolean"
+      },
+      {
+        "label": "GPS Navigation",
+        "name": "gps_navigation",
+        "fieldType": "boolean"
+      },
+      {
+        "label": "Air Conditioning",
+        "name": "air_conditioning",
+        "fieldType": "boolean"
+      },
+      {
+        "label": "Bluetooth Connectivity",
+        "name": "bluetooth",
+        "fieldType": "boolean"
+      },
+      {
+        "label": "Parking Sensors",
+        "name": "parking_sensors",
+        "fieldType": "boolean"
+      },
+      {
+        "label": "Price",
+        "name": "price",
+        "fieldType": "number"
+      }
+    ]
+  }
+  
