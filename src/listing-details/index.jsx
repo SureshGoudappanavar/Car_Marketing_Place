@@ -1,85 +1,170 @@
-import Header from '@/components/Header'
-import React, { useEffect, useState } from 'react'
-import DetailHeader from './components/DetailHeader'
-import { useParams } from 'react-router-dom'
+// import Header from '@/components/Header'
+// import React, { useEffect, useState } from 'react'
+// import DetailHeader from './components/DetailHeader'
+// import { useParams } from 'react-router-dom'
+// import { db } from './../../configs';
+// import { CarImages, CarListing } from './../../configs/schema';
+// import { eq } from 'drizzle-orm';
+// import Service from '@/Shared/Service';
+// import ImageGallery from './components/ImageGallery';
+// import Description from './components/Description';
+
+
+// import Pricing from './components/Pricing';
+// import Specification from './components/Specification';
+// import Footer from '@/components/Footer';
+
+// import FinancialCalculator from './components/FinancialCalculator';
+// import MostSearchedCar from '@/components/MostSearchedCar';
+// import OwnersDetails from './components/OwnersDetails';
+// import Features from './components/Features';
+// function ListingDetail() {
+
+//     const {id}=useParams();
+//     const [carDetail,setCarDetail]=useState();
+    
+    
+//     useEffect(()=>{
+//      GetCarDetail();
+//     },[])
+
+//     const GetCarDetail=async()=>{
+//         const result=await db.select().from(CarListing)
+//         .innerJoin(CarImages,eq(CarListing.id,CarImages.carListingId))
+//         .where(eq(CarListing.id,id))
+//     console.log(id);
+    
+//         const resp=Service.FormatResult(result);
+//         console.log(resp[0]);
+//         setCarDetail(resp[0]);
+//     }
+//   return (
+//     <div>
+
+//         <Header/>
+
+//         {/* Header Details Component */}
+//         <div>
+//             <DetailHeader carDetail={carDetail}/>
+//     <div className='grid grid-cols-1 md:grid-cols-3 ml-16 mt-10 gap-5' >
+//             {/* Left */}
+//          <div className='md:col-span-2 '>
+//        {/* Image Gallery */}
+//         <ImageGallery carDetail={carDetail}/>
+
+//        {/* Description */}
+//           <Description carDetail={carDetail}/>
+
+//        {/* Features List */}
+
+//        <Features features={carDetail?.features}/>
+
+//        {/* FInancial Calculator */}
+
+//        <FinancialCalculator carDetail={carDetail}/>
+//          </div>
+
+//             {/* right */}
+//             <div className=' mr-16'>
+//           {/* Pricing */}
+//         <Pricing carDetail={carDetail}/>
+//           {/* Car Specification */}
+//        <Specification  carDetail={carDetail}/>
+
+//           {/* Owners Details */}
+//           <OwnersDetails carDetail={carDetail}/>
+//             </div >
+//     </div>
+//     <MostSearchedCar/>
+//         </div>
+//         <Footer/>
+//     </div>
+//   )
+// }
+
+// export default ListingDetail
+
+
+import Header from '@/components/Header';
+import React, { useEffect, useState } from 'react';
+import DetailHeader from './DetailHeader'; // Correcting the import path
+import { useParams } from 'react-router-dom';
 import { db } from './../../configs';
 import { CarImages, CarListing } from './../../configs/schema';
 import { eq } from 'drizzle-orm';
 import Service from '@/Shared/Service';
-import ImageGallery from './components/ImageGallery';
-import Description from './components/Description';
-
-
-import Pricing from './components/Pricing';
-import Specification from './components/Specification';
+import ImageGallery from './ImageGallery'; // Correcting the import path
+import Description from './Description'; // Correcting the import path
+import Pricing from './Pricing'; // Correcting the import path
+import Specification from './Specification'; // Correcting the import path
 import Footer from '@/components/Footer';
-
-import FinancialCalculator from './components/FinancialCalculator';
+import FinancialCalculator from './FinancialCalculator'; // Correcting the import path
 import MostSearchedCar from '@/components/MostSearchedCar';
-import OwnersDetails from './components/OwnersDetails';
-import Features from './components/Features';
+import OwnersDetails from './OwnersDetails'; // Correcting the import path
+import Features from './Features'; // Correcting the import path
+
 function ListingDetail() {
+  const { id } = useParams();
+  const [carDetail, setCarDetail] = useState();
 
-    const {id}=useParams();
-    const [carDetail,setCarDetail]=useState();
-    
-    
-    useEffect(()=>{
-     GetCarDetail();
-    },[])
+  useEffect(() => {
+    GetCarDetail();
+  }, []);
 
-    const GetCarDetail=async()=>{
-        const result=await db.select().from(CarListing)
-        .innerJoin(CarImages,eq(CarListing.id,CarImages.carListingId))
-        .where(eq(CarListing.id,id))
+  const GetCarDetail = async () => {
+    const result = await db
+      .select()
+      .from(CarListing)
+      .innerJoin(CarImages, eq(CarListing.id, CarImages.carListingId))
+      .where(eq(CarListing.id, id));
+
     console.log(id);
-    
-        const resp=Service.FormatResult(result);
-        console.log(resp[0]);
-        setCarDetail(resp[0]);
-    }
+
+    const resp = Service.FormatResult(result);
+    console.log(resp[0]);
+    setCarDetail(resp[0]);
+  };
+
   return (
     <div>
+      <Header />
 
-        <Header/>
+      {/* Header Details Component */}
+      <div>
+        <DetailHeader carDetail={carDetail} />
+        <div className='grid grid-cols-1 md:grid-cols-3 ml-16 mt-10 gap-5'>
+          {/* Left */}
+          <div className='md:col-span-2'>
+            {/* Image Gallery */}
+            <ImageGallery carDetail={carDetail} />
 
-        {/* Header Details Component */}
-        <div>
-            <DetailHeader carDetail={carDetail}/>
-    <div className='grid grid-cols-1 md:grid-cols-3 ml-16 mt-10 gap-5' >
-            {/* Left */}
-         <div className='md:col-span-2 '>
-       {/* Image Gallery */}
-        <ImageGallery carDetail={carDetail}/>
+            {/* Description */}
+            <Description carDetail={carDetail} />
 
-       {/* Description */}
-          <Description carDetail={carDetail}/>
+            {/* Features List */}
+            <Features features={carDetail?.features} />
 
-       {/* Features List */}
+            {/* Financial Calculator */}
+            <FinancialCalculator carDetail={carDetail} />
+          </div>
 
-       <Features features={carDetail?.features}/>
+          {/* Right */}
+          <div className='mr-16'>
+            {/* Pricing */}
+            <Pricing carDetail={carDetail} />
 
-       {/* FInancial Calculator */}
+            {/* Car Specification */}
+            <Specification carDetail={carDetail} />
 
-       <FinancialCalculator carDetail={carDetail}/>
-         </div>
-
-            {/* right */}
-            <div className=' mr-16'>
-          {/* Pricing */}
-        <Pricing carDetail={carDetail}/>
-          {/* Car Specification */}
-       <Specification  carDetail={carDetail}/>
-
-          {/* Owners Details */}
-          <OwnersDetails carDetail={carDetail}/>
-            </div >
-    </div>
-    <MostSearchedCar/>
+            {/* Owners Details */}
+            <OwnersDetails carDetail={carDetail} />
+          </div>
         </div>
-        <Footer/>
+        <MostSearchedCar />
+      </div>
+      <Footer />
     </div>
-  )
+  );
 }
 
-export default ListingDetail
+export default ListingDetail;
