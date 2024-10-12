@@ -8,7 +8,7 @@ import { eq } from 'drizzle-orm';
 import Service from '@/Shared/Service';
 import ImageGallery from './components/ImageGallery';
 import Description from './components/Description';
-import Features from "../components/features";
+
 
 import Pricing from './components/Pricing';
 import Specification from './components/Specification';
@@ -17,6 +17,7 @@ import Footer from '@/components/Footer';
 import FinancialCalculator from './components/FinancialCalculator';
 import MostSearchedCar from '@/components/MostSearchedCar';
 import OwnersDetails from './components/OwnersDetails';
+import Features from './components/Features';
 function ListingDetail() {
 
     const {id}=useParams();
