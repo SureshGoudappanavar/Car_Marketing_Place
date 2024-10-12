@@ -1,14 +1,17 @@
 import { UserButton, useUser, SignInButton } from '@clerk/clerk-react';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Button } from './ui/button';
 import { Link } from 'react-router-dom';
 
 function Header() {
     const { user, isSignedIn } = useUser();
 
+
+    
+
     return (
         <div className='flex justify-between items-center shadow-sm p-5'>
-            <img src='./logo.svg' width={150} height={100} alt="Logo"/>
+            <img src='/logo.svg' width={150} height={100} alt="Logo"/>
         
             <ul className='hidden md:flex gap-16'>
                 <li className='font-medium hover:scale-105 translate-all hover:text-primary'>
@@ -18,11 +21,11 @@ function Header() {
                     <Link to='/search'>Search</Link>
                 </li>
                 <li className='font-medium hover:scale-105 translate-all hover:text-primary'>
-                    <Link to='/new'>New</Link>
-                </li>
-                <li className='font-medium hover:scale-105 translate-all hover:text-primary'>
-                    <Link to='/preowned'>Preowned</Link>
-                </li>
+                <Link to='/about'>About</Link>
+            </li>
+            <li className='font-medium hover:scale-105 translate-all hover:text-primary'>
+               <Link to='/contact'>Contact Us</Link>
+            </li>
             </ul>
 
             {isSignedIn ? (
@@ -53,5 +56,8 @@ function Header() {
 }
 
 export default Header;
+
+
+
 
 

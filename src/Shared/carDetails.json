@@ -1,6 +1,58 @@
 {
     "carDetails": [
       {
+        "label": "Make",
+        "name": "make",
+        "fieldType": "dropdown",
+        "required": true,
+        "options": [
+          "Toyota",
+          "Honda",
+          "Ford",
+          "Chevrolet",
+          "Nissan",
+          "BMW",
+          "Mercedes-Benz",
+          "Audi",
+          "Tesla",
+          "Volkswagen",
+          "Hyundai",
+          "Kia",
+          "Lexus",
+          "Subaru",
+          "Mazda",
+          "Jeep",
+          "Dodge",
+          "Ram",
+          "GMC",
+          "Volvo",
+          "Land Rover",
+          "Jaguar",
+          "Porsche",
+          "Fiat",
+          "Alfa Romeo",
+          "Mitsubishi",
+          "Infiniti",
+          "Acura",
+          "Mini",
+          "Buick",
+          "Cadillac",
+          "Chrysler",
+          "Lincoln",
+          "Maserati",
+          "Bentley",
+          "Rolls-Royce",
+          "Aston Martin",
+          "Ferrari",
+          "Lamborghini",
+          "McLaren",
+          "Pagani",
+          "Bugatti"
+        ],
+        "column": 1,
+        "icon": "FaIndustry"
+      },
+      {
         "label": "Vehicle Model",
         "name": "vehicleModel",
         "fieldType": "text",
@@ -34,7 +86,7 @@
         "icon": "money-bill"
       },
       {
-        "label": "Mileage (in km)",
+        "label": "Mileage",
         "name": "mileage",
         "fieldType": "number",
         "required": true,
@@ -76,6 +128,15 @@
         "options": ["2", "4", "5", "7", "8"]
       },
       {
+        "label": "category",
+        "name": "Category",
+        "fieldType": "dropdown",
+        "required": false,
+        "column": 1,
+        "icon": "users",
+        "options": ["SUV", "Sedan", "Hatchback", "Electric", "Convertible" ,"Hybrid","Coupe","Van","Truck"]
+      },
+      {
         "label": "Vehicle Description",
         "name": "description",
         "fieldType": "textarea",
@@ -83,6 +144,51 @@
         "column": 2,
         "icon": "clipboard"
       }
+      ,
+      {
+        "label": "Condition",
+        "name": "condition",
+        "fieldType": "dropdown",
+        "required": true,
+        "options": ["New", "Used", "Certified Pre-Owned"],
+        "column": 1,
+        "icon": "FaCheckCircle"
+      },
+      
+     
+      {
+        "label": "Original Price",
+        "name": "originalPrice",
+        "fieldType": "text",
+        "column": 1,
+        "icon": "FaDollarSign"
+      },
+      {
+        "label": "Selling Price",
+        "name": "sellingPrice",
+        "fieldType": "text",
+        "required": true,
+        "column": 1,
+        "icon": "FaMoneyBillAlt"
+      },
+      {
+        "label": "Offer Type",
+        "name": "offerType",
+        "fieldType": "dropdown",
+        "options": ["Buy", "Hot Offer", "Sell", "Urgent"],
+        "column": 2,
+        "icon": "FaTags"
+      },
+      {
+        "label": "Drive Type",
+        "name": "driveType",
+        "fieldType": "dropdown",
+        "options": ["FWD", "RWD", "AWD", "4WD"],
+        "required": true,
+        "column": 1,
+        "icon": "FaRoad"
+      }
+    
     ]
   }
   

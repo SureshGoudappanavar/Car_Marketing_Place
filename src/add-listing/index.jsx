@@ -261,10 +261,19 @@ const [searchParams]=useSearchParams();
   const navigate = useNavigate();
   const { user } = useUser(); // Get user information
 
-  const selectedCategory = Category(cat => cat.name === formData.categoryName);
+  // const selectedCategory = Data.Category.find();
 
 const mode=searchParams.get('mode');
 const recordId=searchParams.get('id');
+
+// const categories = Data.Category || []; // Handle potential undefined Data.Category
+
+// if (categories.length > 0) {
+//   console.log("Category Name:", categories[0].name);
+// } else {
+//   console.log("No categories found.");
+// }
+
 
 
 useEffect(()=>{
@@ -328,11 +337,12 @@ const GetListingDetail=async()=>{
 if(mode=='edit'){
     const result=await db.update(CarListing).set({
       ...formData, 
-        features: featuresData, 
+        features:featuresData,
         postedOn: moment().format('DD/MM/yyyy'), 
         createdBy:user?.primaryEmailAddress?.emailAddress, 
         userName:user?.fullName,
-        userImageUrl:user?.imageUrl
+        userImageUrl:user?.imageUrl,
+     
     }).where(eq(CarListing.id,recordId)).returning({id:CarListing.id})
     console.log(result);
 
@@ -356,7 +366,7 @@ else{
         postedOn: moment().format('DD/MM/yyyy'), 
         createdBy:createdByEmail , 
         userName:user?.fullName,
-        category: selectedCategory?.name || 'Unknown',
+      
       }).returning({ id: CarListing.id });
 
       if (result && result.length > 0) {

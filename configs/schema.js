@@ -72,7 +72,7 @@ import { pgTable, serial, varchar, jsonb, integer } from "drizzle-orm/pg-core";
 // CarListing table definition
 export const CarListing = pgTable("carListing", {
   id:serial("id").primaryKey().notNull(), // Primary key
-  vehicleModel: varchar("vehicleModel").notNull(),
+  make:varchar('make'),
   fuelType: varchar("fuelType").notNull(),
   transmission: varchar("transmission").notNull(),
   price: varchar("price").notNull(),
@@ -85,8 +85,18 @@ export const CarListing = pgTable("carListing", {
   features: jsonb("features"), // JSONB for storing car features
   createdBy: varchar('createdBy').notNull(),
   postedOn: varchar('postedOn'),
-  category:varchar('category'),
+  Category:varchar('category'),
+  condition:varchar('condition'),
+  originalPrice:varchar('originalPrice'),
+  sellingPrice:varchar('sellingPrice'),
+  driveType:varchar('driveType'),
+ 
+  offerType:varchar('offerType'),
+  vehicleModel: varchar("vehicleModel").notNull(),
+  userName:varchar('userName').notNull().default('Suresh'),
+  userImageUrl:varchar('userImageUrl').default('https://tse4.mm.bing.net/th?id=OIP.GCSmU3yVYAm6IgDAUlsI4QHaG8&pid=Api&P=0&h=180')
 });
+
 
 // CarImages table definition
 export const CarImages = pgTable("carImages", {
@@ -94,6 +104,4 @@ export const CarImages = pgTable("carImages", {
   imageUrl: varchar("imageUrl").notNull(), // Image URL, must not be null
   carListingId:integer("carListingId").notNull()// Foreign key reference to CarListing
     .references(() => CarListing.id, { onDelete: "CASCADE" }) // Cascade on delete
-
-    
 });

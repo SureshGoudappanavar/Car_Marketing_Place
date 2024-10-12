@@ -23,13 +23,17 @@ function InfoSection() {
 
         <div className="p-8 sm:p-16 lg:p-24">
           <h2 className="text-2xl font-bold sm:text-3xl">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore, debitis.
+          Car: A Versatile Mode of Transportation
           </h2>
 
           <p className="mt-4 text-gray-600">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, molestiae! Quidem est
-            esse numquam odio deleniti, beatae, magni dolores provident quaerat totam eos, aperiam
-            architecto eius quis quibusdam fugiat dicta.
+          A car, also known as an automobile, is a wheeled motor vehicle designed primarily 
+          for passenger transportation. Cars come in various shapes and sizes, ranging from compact
+           hatchbacks to large SUVs, catering to different needs and preferences. Powered by internal
+            combustion engines or electric motors, cars offer convenience and speed, making them essential 
+            in modern society. Beyond daily commuting, cars are used for leisure travel, business purposes, 
+            and even sporting events. With technological advancements, modern cars now feature enhanced safety systems,
+             infotainment options, and eco-friendly alternatives like hybrid and electric models.
           </p>
 
           <a

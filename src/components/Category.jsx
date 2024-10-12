@@ -21,7 +21,7 @@ import React from 'react';
 import Data from '@/Shared/Data'; // Ensure the Data import is correct
 import { Link } from 'react-router-dom';
 
-function Category() {
+function category() {
   return (
     <div className="mt-40">
       <h2 className="font-bold text-3xl text-center mb-6">Browse By Type</h2>
@@ -31,7 +31,9 @@ function Category() {
             <div className='border rounded-xl p-3 items-center flex flex-col hover:shadow-md cursor-pointer'>
               <img src={category.icon} alt={category.name} width={35} height={35} />
               <p className='mt-2'>{category.name}</p>
+              
             </div>
+            
           </Link>
         ))}
       </div>
@@ -39,5 +41,5 @@ function Category() {
   );
 }
 
-export default Category;
+export default category;
 

@@ -12,11 +12,19 @@ import {ClerkProvider} from '@clerk/clerk-react'
 import Profile from "./profile";
 import AddListing from "./add-listing";
 import SearchByCategory from "./search/[category]";
+import SearchByOptions from "./search";
+import ListingDetail from "./listing-details";
+
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Home/>,
   },
+  {
+    path: '/about',
+    element: <Contact/>,
+  },
+  ,
   {
     path: '/contact',
     element: <Contact/>,
@@ -35,6 +43,17 @@ const router = createBrowserRouter([
     path: '/search/:category',
     element: <SearchByCategory/>,
   }
+  ,
+  {
+    path: '/search',
+    element: <SearchByOptions/>,
+  }
+  ,
+  {
+    path: '/listing-details/:id',
+    element: <ListingDetail/>,
+  }
+
 ]);
 
 

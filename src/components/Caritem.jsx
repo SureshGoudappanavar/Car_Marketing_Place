@@ -4,9 +4,13 @@ import { LuFuel } from "react-icons/lu";
 import { IoSpeedometerOutline } from "react-icons/io5";
 import { GiGearStickPattern } from "react-icons/gi";
 import { IoMdOpen } from "react-icons/io";
-
+import { Link } from 'react-router-dom';
 function CarItem({ car }) {
+
+
+  
   return (
+    <Link to={'/listing-details/'+car?.id}>
     <div className='rounded-xl bg-white border hover:shadow-md cursor-pointer p-4'>
       <h2 className='absolute m-2 bg-green-500 px-2 rounded-full text-white '>new</h2>
       {/* <img className='rounded-t-xl rounded-b-xl' src={car?.images[0]?.imageUrl} width={'100%'} height={250} alt={car?.vehicleModel} /> */}
@@ -58,6 +62,7 @@ function CarItem({ car }) {
         </div>
       </div>
     </div>
+    </Link>
   );
 }
 
