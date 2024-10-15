@@ -66,10 +66,11 @@ const [price,setPrice]=useState();
       </Select>
 
       {/* Search Icon */}
+      <div>
       <Link to={'/search?cars='+cars+"&make="+make+"&price="+price}>
         <CiSearch className='text-[50px] bg-primary rounded-full p-3 text-white hover:scale-105 transition-all cursor-pointer' />
       </Link>
-
+      </div>
     </div>
   );
 }

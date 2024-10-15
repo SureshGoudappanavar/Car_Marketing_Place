@@ -164,7 +164,7 @@ function MyListing() {
     };
 
     return (
-        <div className='container mx-auto mt-6 p-4 md:p-8'>
+        <div className=' mt-6 '>
             <div className='flex justify-between items-center'>
                 <h2 className='font-bold text-3xl md:text-4xl'>My Listing</h2>
                 <Link to={'/add-listing'}>

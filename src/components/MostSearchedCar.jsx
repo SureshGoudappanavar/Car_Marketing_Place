@@ -38,22 +38,48 @@ useEffect(()=>{
       Most Searched Cars
     </h2>
      
-        <Carousel>
-  <CarouselContent>
+        {/* <Carousel>
+  <CarouselContent > */}
     
     
-    {
-           carList.map((car,index)=>(
-                <CarouselItem key={index} className="basis-1/2 md:basis-1/3 ">
-                    <Caritem car={car} />
-                    </CarouselItem>
+    {/* <div className="flex flex-wrap  space-x-2"> 
+  {carList.map((car, index) => (
+    <Caritem 
+      key={index}
+      car={car} 
+      className="flex-shrink-0 w-full md:w-1/2 lg:w-1/3 p-2" // Responsive width
+    />
+  ))}
+</div> */}
+<div className="flex flex-wrap space-x-0">
+  {carList.map((car) => (
+    <div key={car.id} className="flex-shrink-0 w-full md:w-1/2 lg:w-1/3 p-2">
+      <Caritem 
+        car={car} 
+        className="h-full flex flex-col" // Ensure the car item takes full height
+      />
+    </div>
+  ))}
+</div>
 
-              )  )
-        }
-  </CarouselContent>
+
+
+  {/* </CarouselContent>
   <CarouselPrevious />
   <CarouselNext />
-</Carousel>
+</Carousel> */}
+
+
+{/* {
+  carList.map((car, index) => (
+    <Caritem  
+      key={index}
+      car={car}
+     // Responsive width and padding
+    />
+  ))
+} */}
+
 
     </div>
   )

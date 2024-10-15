@@ -11,26 +11,18 @@ function CarItem({ car }) {
   
   return (
     <Link to={'/listing-details/'+car?.id}>
-    <div className='rounded-xl bg-white border hover:shadow-md cursor-pointer p-4'>
-      <h2 className='absolute m-2 bg-green-500 px-2 rounded-full text-white '>new</h2>
+    <div className='rounded-xl bg-white border hover:shadow-md cursor-pointer p-4 '>
+      {/* <h2 className='absolute m-2 bg-green-500 px-2 rounded-full text-white '>new</h2> */}
       {/* <img className='rounded-t-xl rounded-b-xl' src={car?.images[0]?.imageUrl} width={'100%'} height={250} alt={car?.vehicleModel} /> */}
 
       <img 
-  className='rounded-t-xl rounded-b-xl h-[180px] object-cover' 
+  className='w-full h-[250px] object-cover rounded-t-xl' 
   src={car?.images[0]?.imageUrl || '/default-car-image.jpg'} 
-  width={'100%'} 
-  height={250} 
   alt={car?.vehicleModel || 'Default Car Image'} 
-
 />
 
 
-
-
-
-
-
-      <div className='p-4 '>
+      <div className='p-4 flex-grow'>
         <h2 className='font-bold text-black text-lg mb-2'>{car?.name}</h2>
         
         {/* Separator for visual separation */}
@@ -67,4 +59,5 @@ function CarItem({ car }) {
 }
 
 export default CarItem;
+
 
