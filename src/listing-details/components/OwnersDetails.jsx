@@ -5,50 +5,52 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom';
 
 function OwnersDetails({carDetail}) {
-  const {user}=useUser();
-  const navigation=useNavigate();
+  // const {user}=useUser();
+  // const navigation=useNavigate();
 
-  const OnMessageOwnerButtonClick = async () => {
-    console.log(carDetail?.userName);
-    const ownerUserId = carDetail?.createdBy.split('@')[0];
-    const userId = user.primaryEmailAddress.emailAddress.split('@')[0];
+  // const OnMessageOwnerButtonClick = async () => {
+  //   console.log(carDetail?.userName);
+  //   const ownerUserId = carDetail?.createdBy.split('@')[0];
+  //   const userId = user.primaryEmailAddress.emailAddress.split('@')[0];
   
-    try {
-      // Create Current User
-      const userResp = await Service.CreateSendBirdUser(userId, user?.fullName);
-      console.log('Current User Created:', userResp);
-    } catch (e) {
-      console.error('Error creating current user:', e); // Add error logging
-    }
+  //   try {
+  //     // Create Current User
+  //     const userResp = await Service.CreateSendBirdUser(userId, user?.fullName);
+  //     console.log('Current User Created:', userResp);
+  //   } catch (e) {
+  //     console.error('Error creating current user:', e); // Add error logging
+  //   }
+   
+  //   try {
+  //     const userId = user.primaryEmailAddress.emailAddress.split('@')[0];
+  //       await Service.CreateSendBirdUser(ownerUserId,carDetail?.userName ,carDetail?.userImageUrl)
+  //       .then((resp)=>{
+  //         console.log(resp)
+  //       })
+
+  //   }  catch (e) {
+  //     console.error('Error creating owner user:', e); // Add error logging
+  //   }
   
-    try {
+  //   // Additional logic for creating a channel or other actions
+  //   try {
 
-        await Service.CreateSendBirdUser(ownerUserId,carDetail?.userName ,carDetail?.userImageUrl)
-        .then((resp)=>{
-          console.log(resp)
-        })
+  //     await Service.CreateSendBirdUser([userId,ownerUserId],carDetail?.vehicleModel )
+  //     .then((resp)=>{
+  //       console.log(resp)
+  //       console.log('Channel Created');
+  //       navigation('./profile');
+  //     })
 
-    }  catch (e) {
-      console.error('Error creating owner user:', e); // Add error logging
-    }
+  // }  catch (e) {
+  //   navigation('./profile');
+  //   console.error('Error creating owner user:', e); // Add error logging
+  // }
+
+
+  // };
   
-    // Additional logic for creating a channel or other actions
-    try {
-
-      await Service.CreateSendBirdUser([userId,ownerUserId],carDetail?.vehicleModel )
-      .then((resp)=>{
-        console.log(resp)
-        console.log('Channel Created');
-        navigation('./profile');
-      })
-
-  }  catch (e) {
-    console.error('Error creating owner user:', e); // Add error logging
-  }
-
-
-  };
-  
+  const ownerEmail = `${carDetail?.createdBy}`;
   return (
     <div className='p-10 border rounded-xl shadow-md mt-7'>
         <h2 className='font-medium text-2xl mb-3'>Owner / Deals</h2>
@@ -57,13 +59,14 @@ function OwnersDetails({carDetail}) {
         <h2 className='mt-2 font-bold text-xl'>{carDetail?.userName}</h2>
         <h2 className='mt-2 text-gray-500'>{carDetail?.createdBy}</h2>
 
+        
+
 <Button className="w-full mt-6"
-
-onClick={OnMessageOwnerButtonClick}
->Message Owner
-
-
+    onClick={() => window.location.href = `mailto:${ownerEmail}`}
+>
+    Message Owner
 </Button>
+
 
     </div>
   )

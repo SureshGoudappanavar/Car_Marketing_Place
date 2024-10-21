@@ -186,19 +186,19 @@ const CarMakes=[
 const Pricing=[
     {
         id:1,
-        amount:'1000$'
+        amount:'$10,000 – $20,000'
     },
     {
         id:2,
-        amount:'2000$'
+        amount:'$20,000 – $30,000'
     },
     {
         id:3,
-        amount:'3000$'
+        amount:'$30,000 – $40,000'
     },
     {
         id:4,
-        amount:'4000$'
+        amount:'$40,000 – $50,000'
     },
 ]
 const Category=[

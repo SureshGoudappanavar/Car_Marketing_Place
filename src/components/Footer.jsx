@@ -54,35 +54,35 @@ function Footer() {
       </p>
   
       <ul className="mt-12 flex flex-wrap justify-center gap-6 md:gap-8 lg:gap-12">
-        <li>
+        {/* <li>
           <a className="text-gray-700 transition hover:text-gray-700/75" href="#"> About </a>
+        </li> */}
+  
+      <li>
+          <a className="text-gray-700 transition hover:text-gray-700/75" href="https://www.carwale.com/news/"> Car News</a>
         </li>
   
         <li>
-          <a className="text-gray-700 transition hover:text-gray-700/75" href="#"> Careers </a>
+          <a className="text-gray-700 transition hover:text-gray-700/75" href="https://www.cardekho.com/newcars"> Car Live Prices </a>
         </li>
   
-        <li>
-          <a className="text-gray-700 transition hover:text-gray-700/75" href="#"> History </a>
-        </li>
-  
-        <li>
+        {/* <li>
           <a className="text-gray-700 transition hover:text-gray-700/75" href="#"> Services </a>
+        </li> */}
+  
+        <li>
+          <a className="text-gray-700 transition hover:text-gray-700/75" href="https://www.guvi.in/blog/react-project-ideas-for-developers/"> Best Projects List </a>
         </li>
   
         <li>
-          <a className="text-gray-700 transition hover:text-gray-700/75" href="#"> Projects </a>
-        </li>
-  
-        <li>
-          <a className="text-gray-700 transition hover:text-gray-700/75" href="#"> Blog </a>
+          <a className="text-gray-700 transition hover:text-gray-700/75" href="https://carkhabri.com/carblogs">Car Blogs </a>
         </li>
       </ul>
   
       <ul className="mt-12 flex justify-center gap-6 md:gap-8">
         <li>
           <a
-            href="#"
+            href="https://www.facebook.com/prakash.goudappanavar.98"
             rel="noreferrer"
             target="_blank"
             className="text-gray-700 transition hover:text-gray-700/75"
@@ -100,7 +100,7 @@ function Footer() {
   
         <li>
           <a
-            href="#"
+            href="https://www.instagram.com/suresh_g_003/?hl=en"
             rel="noreferrer"
             target="_blank"
             className="text-gray-700 transition hover:text-gray-700/75"
@@ -118,7 +118,7 @@ function Footer() {
   
         <li>
           <a
-            href="#"
+            href="https://x.com/SureshGoud78341?t=A80oLD9kJOpT-ZUvhEzOJQ&s=08"
             rel="noreferrer"
             target="_blank"
             className="text-gray-700 transition hover:text-gray-700/75"
@@ -134,7 +134,7 @@ function Footer() {
   
         <li>
           <a
-            href="#"
+            href="https://github.com/SureshGoudappanavar"
             rel="noreferrer"
             target="_blank"
             className="text-gray-700 transition hover:text-gray-700/75"
@@ -150,7 +150,7 @@ function Footer() {
           </a>
         </li>
   
-        <li>
+        {/* <li>
           <a
             href="#"
             rel="noreferrer"
@@ -166,7 +166,7 @@ function Footer() {
               />
             </svg>
           </a>
-        </li>
+        </li> */}
       </ul>
     </div>
   </footer></div>

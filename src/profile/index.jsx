@@ -15,7 +15,7 @@ function Profile() {
                 <Tabs defaultValue="my-listing" className="w-full">
   <TabsList className="w-full flex justify-start">
     <TabsTrigger value="my-listing">My Listing</TabsTrigger>
-    <TabsTrigger value="inbox">Inbox</TabsTrigger>
+    {/* <TabsTrigger value="inbox">Inbox</TabsTrigger> */}
     
  
  
@@ -26,7 +26,7 @@ function Profile() {
   <MyListing/>
 
   </TabsContent>
-  <TabsContent value="inbox"><Inbox/></TabsContent>
+  {/* <TabsContent value="inbox"><Inbox/></TabsContent> */}
  
 </Tabs>
 
