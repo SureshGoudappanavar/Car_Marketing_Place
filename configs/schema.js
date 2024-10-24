@@ -94,7 +94,8 @@ export const CarListing = pgTable("carListing", {
   offerType:varchar('offerType'),
   vehicleModel: varchar("vehicleModel").notNull(),
   userName:varchar('userName').notNull(),
-  userImageUrl:varchar('userImageUrl').default('https://tse4.mm.bing.net/th?id=OIP.GCSmU3yVYAm6IgDAUlsI4QHaG8&pid=Api&P=0&h=180')
+  userImageUrl:varchar('userImageUrl').default('https://tse4.mm.bing.net/th?id=OIP.GCSmU3yVYAm6IgDAUlsI4QHaG8&pid=Api&P=0&h=180'),
+  offerPrice:varchar("offerPrice").default("Not Made any Offer")
 });
 
 
