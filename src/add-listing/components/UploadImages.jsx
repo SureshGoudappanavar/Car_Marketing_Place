@@ -188,6 +188,156 @@
 
 
 
+// import { Button } from '@/components/ui/button';
+// import { storage } from './../../../configs/firebaseConfig.js'; 
+// import React, { useEffect, useState } from 'react';
+// import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'; 
+// import { IoMdCloseCircle } from "react-icons/io";
+// import { CarImages } from './../../../configs/schema.js';
+// import { db } from './../../../configs/index.js';
+// import { eq } from 'drizzle-orm';
+
+
+// function UploadImages({ triggerUploadImages, setLoader,carInfo,mode }) {
+//     const [selectedFileList, setSelectedFileList] = useState([]);
+//     const [EditCarImageList,setEditCarimageList]=useState([]);
+   
+//     useEffect(() => {
+//        if(mode=='edit'){
+//         setEditCarimageList([]);
+//         carInfo?.images.forEach((image)=>{
+//             setEditCarimageList(prev=>[...prev,image?.imageUrl]);
+            
+//         })
+//        }
+//     }, [carInfo]); 
+   
+//     useEffect(() => {
+//         if (triggerUploadImages && selectedFileList.length > 0) {
+//             uploadImagesToServer(); // Trigger upload only when files are selected
+//         }
+//     }, [triggerUploadImages]);
+
+//     // Handle file selection and display the local file path in the console
+//     const onFileSelected = (event) => {
+//         const files = event.target.files;
+//         const fileArray = [];
+        
+//         for (let i = 0; i < files.length; i++) {
+//             const file = files[i];
+//             fileArray.push(file);
+
+//             // Log the local URL of the selected image in the console
+//             const localUrl = URL.createObjectURL(file);
+//             console.log("Local image URL: ", localUrl);
+//         }
+
+//         // Update selected file list state
+//         setSelectedFileList(fileArray);
+//     };
+
+//     // Function to upload images to Firebase and push URLs to Drizzle database
+//     const uploadImagesToServer = async () => {
+//         if (selectedFileList.length === 0) return;
+    
+//         setLoader(true); // Show loader while images are being uploaded
+    
+//         try {
+//             for (const file of selectedFileList) {
+//                 console.log("Uploading file:", file.name);
+    
+//                 const fileName = Date.now() + '.jpeg';
+//                 const storageRef = ref(storage, 'car-marketplace/' + fileName);
+//                 const metaData = { contentType: 'image/jpeg' };
+    
+//                 // Upload image to Firebase Storage
+//                 const snapshot = await uploadBytes(storageRef, file, metaData);
+//                 const downloadUrl = await getDownloadURL(storageRef);
+//                 console.log("Firebase download URL:", downloadUrl);
+    
+//                 // Insert image URL into the correct table in Drizzle
+//                 const result = await db.insert(CarImages).values({
+//                     imageUrl: downloadUrl,
+//                     carListingId: triggerUploadImages // Ensure this ID is valid and corresponds to the carListingId in your carListing table
+//                 });
+    
+//                 // Check if the insertion was successful
+//                 if (result) {
+//                     console.log("Image URL successfully inserted into Drizzle:", downloadUrl);
+//                 } else {
+//                     console.error("Failed to insert image URL into Drizzle.");
+//                 }
+//             }
+//         } catch (error) {
+//             console.error("Error uploading file or inserting into Drizzle: ", error);
+//         } finally {
+//             setLoader(false); // Hide loader after upload process is complete
+//         }
+//     };
+    
+    
+
+//     // Remove selected image from the list
+//     const onImageRemove = (image, index) => {
+//         const result = selectedFileList.filter((item) => item !== image);
+//         setSelectedFileList(result);
+//     };
+
+//     const onImageRemoveFromDB=async(image,index)=>{
+//        const result=await db.delete(CarImages).
+//        where(eq(CarImages.id,carInfo?.images[index]?.id)).returning({id:CarImages.id});
+
+//        const imageList=EditCarImageList.filter(item=>item!=image);
+//        setEditCarimageList(imageList);
+//     }
+
+//     return (
+//         <div>
+//             <h2 className='font-medium text-xl my-3'>Upload Car Images</h2>
+//             <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-5'>
+                
+//                {mode=='edit'&&
+//                          EditCarImageList.map((image, index) => (
+//                             <div key={index} className="relative">
+//                                 <IoMdCloseCircle className='absolute m-2 text-lg text-white cursor-pointer'
+//                                     onClick={() => onImageRemoveFromDB(image, index)}
+//                                 />
+//                                 <img src={(image)} className='w-full h-[130px] object-cover rounded-xl' />
+//                             </div>
+//                         ))}
+                
+//                 {selectedFileList.map((image, index) => (
+//                     <div key={index} className="relative">
+//                         <IoMdCloseCircle className='absolute m-2 text-lg text-white cursor-pointer'
+//                             onClick={() => onImageRemove(image, index)}
+//                         />
+//                         <img src={image} className='w-full h-[130px] object-cover rounded-xl' />
+//                     </div>
+//                 ))}
+
+//                 <label htmlFor='upload-images'>
+//                     <div className='border rounded-xl border-dotted border-primary bg-blue-100 p-10 hover:bg-blue-200 hover:border-blue-500 cursor-pointer'>
+//                         <h2 className='text-lg text-center'>+</h2>
+//                     </div>
+//                 </label>
+//                 <input type="file" multiple={true} id='upload-images'
+//                     onChange={onFileSelected}
+//                     className="opacity-0"
+//                 />
+//             </div>
+//         </div>
+//     );
+// }
+
+// export default UploadImages;
+
+
+
+
+
+
+
+
 import { Button } from '@/components/ui/button';
 import { storage } from './../../../configs/firebaseConfig.js'; 
 import React, { useEffect, useState } from 'react';
@@ -197,21 +347,19 @@ import { CarImages } from './../../../configs/schema.js';
 import { db } from './../../../configs/index.js';
 import { eq } from 'drizzle-orm';
 
-
-function UploadImages({ triggerUploadImages, setLoader,carInfo,mode }) {
+function UploadImages({ triggerUploadImages, setLoader, carInfo, mode }) {
     const [selectedFileList, setSelectedFileList] = useState([]);
-    const [EditCarImageList,setEditCarimageList]=useState([]);
-   
+    const [editCarImageList, setEditCarImageList] = useState([]);
+
     useEffect(() => {
-       if(mode=='edit'){
-        setEditCarimageList([]);
-        carInfo?.images.forEach((image)=>{
-            setEditCarimageList(prev=>[...prev,image?.imageUrl]);
-            
-        })
-       }
-    }, [carInfo]); 
-   
+        if (mode === 'edit') {
+            setEditCarImageList([]);
+            carInfo?.images.forEach((image) => {
+                setEditCarImageList(prev => [...prev, image?.imageUrl]);
+            });
+        }
+    }, [carInfo, mode]);
+
     useEffect(() => {
         if (triggerUploadImages && selectedFileList.length > 0) {
             uploadImagesToServer(); // Trigger upload only when files are selected
@@ -222,13 +370,14 @@ function UploadImages({ triggerUploadImages, setLoader,carInfo,mode }) {
     const onFileSelected = (event) => {
         const files = event.target.files;
         const fileArray = [];
-        
+
         for (let i = 0; i < files.length; i++) {
             const file = files[i];
-            fileArray.push(file);
+            const localUrl = URL.createObjectURL(file);
+            
+            fileArray.push({ file, url: localUrl });
 
             // Log the local URL of the selected image in the console
-            const localUrl = URL.createObjectURL(file);
             console.log("Local image URL: ", localUrl);
         }
 
@@ -243,7 +392,8 @@ function UploadImages({ triggerUploadImages, setLoader,carInfo,mode }) {
         setLoader(true); // Show loader while images are being uploaded
     
         try {
-            for (const file of selectedFileList) {
+            for (const item of selectedFileList) {
+                const { file } = item; // Access the file from the object
                 console.log("Uploading file:", file.name);
     
                 const fileName = Date.now() + '.jpeg';
@@ -261,7 +411,6 @@ function UploadImages({ triggerUploadImages, setLoader,carInfo,mode }) {
                     carListingId: triggerUploadImages // Ensure this ID is valid and corresponds to the carListingId in your carListing table
                 });
     
-                // Check if the insertion was successful
                 if (result) {
                     console.log("Image URL successfully inserted into Drizzle:", downloadUrl);
                 } else {
@@ -274,44 +423,44 @@ function UploadImages({ triggerUploadImages, setLoader,carInfo,mode }) {
             setLoader(false); // Hide loader after upload process is complete
         }
     };
-    
-    
 
     // Remove selected image from the list
     const onImageRemove = (image, index) => {
-        const result = selectedFileList.filter((item) => item !== image);
+        const result = selectedFileList.filter((_, idx) => idx !== index);
         setSelectedFileList(result);
     };
 
-    const onImageRemoveFromDB=async(image,index)=>{
-       const result=await db.delete(CarImages).
-       where(eq(CarImages.id,carInfo?.images[index]?.id)).returning({id:CarImages.id});
+    const onImageRemoveFromDB = async (image, index) => {
+        const result = await db.delete(CarImages)
+            .where(eq(CarImages.id, carInfo?.images[index]?.id))
+            .returning({ id: CarImages.id });
 
-       const imageList=EditCarImageList.filter(item=>item!=image);
-       setEditCarimageList(imageList);
-    }
+        const imageList = editCarImageList.filter(item => item !== image);
+        setEditCarImageList(imageList);
+    };
 
     return (
         <div>
             <h2 className='font-medium text-xl my-3'>Upload Car Images</h2>
             <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-5'>
                 
-               {mode=='edit'&&
-                         EditCarImageList.map((image, index) => (
-                            <div key={index} className="relative">
-                                <IoMdCloseCircle className='absolute m-2 text-lg text-white cursor-pointer'
-                                    onClick={() => onImageRemoveFromDB(image, index)}
-                                />
-                                <img src={(image)} className='w-full h-[130px] object-cover rounded-xl' />
-                            </div>
-                        ))}
-                
-                {selectedFileList.map((image, index) => (
+                {mode === 'edit' &&
+                    editCarImageList.map((image, index) => (
+                        <div key={index} className="relative">
+                            <IoMdCloseCircle className='absolute m-2 text-lg text-white cursor-pointer'
+                                onClick={() => onImageRemoveFromDB(image, index)}
+                            />
+                            <img src={image} className='w-full h-[130px] object-cover rounded-xl' />
+                        </div>
+                    ))
+                }
+
+                {selectedFileList.map((item, index) => (
                     <div key={index} className="relative">
                         <IoMdCloseCircle className='absolute m-2 text-lg text-white cursor-pointer'
-                            onClick={() => onImageRemove(image, index)}
+                            onClick={() => onImageRemove(item, index)}
                         />
-                        <img src={image} className='w-full h-[130px] object-cover rounded-xl' />
+                        <img src={item.url} className='w-full h-[130px] object-cover rounded-xl' />
                     </div>
                 ))}
 
@@ -330,6 +479,16 @@ function UploadImages({ triggerUploadImages, setLoader,carInfo,mode }) {
 }
 
 export default UploadImages;
+
+
+
+
+
+
+
+
+
+
 
 
 

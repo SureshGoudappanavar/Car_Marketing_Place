@@ -423,22 +423,25 @@ else{
           <Separator className="my-6" />
 
           {/* Features list */}
-          <div>
-            <h2 className="font-medium text-xl my-6">Features</h2>
-            <div className="grid grid-cols-2 md:grid-cols-3">
-              {features.features.map((item, index) => (
-                <div key={index} className="flex gap-2 items-center">
-                  <Checkbox
-                    onCheckedChange={(isChecked) =>
-                      handleFeatureChange(item.name, isChecked)
-                    }
-                    checked={featuresData?.[item?.name]}
-                  />
-                  <h2>{item.label}</h2>
-                </div>
-              ))}
-            </div>
-          </div>
+     {/* Features list */}
+<div>
+  <h2 className="font-medium text-xl my-6">Features</h2>
+  <div className="grid grid-cols-2 md:grid-cols-3">
+    {features.features.map((item, index) => (
+      <div key={index} className="flex gap-2 items-center">
+        <Checkbox
+          onCheckedChange={(isChecked) =>
+            handleFeatureChange(item.name, isChecked)
+          }
+          // Correctly set the `checked` prop based on `featuresData`
+          checked={featuresData.includes(item.name)} 
+        />
+        <h2>{item.label}</h2>
+      </div>
+    ))}
+  </div>
+</div>
+
 
                      {/* Car Images */}
              <Separator className="my-6" />
