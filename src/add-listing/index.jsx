@@ -367,6 +367,8 @@ else{
         createdBy:createdByEmail , 
         userName:user?.fullName,
       
+        
+      
       }).returning({ id: CarListing.id });
 
       if (result && result.length > 0) {
