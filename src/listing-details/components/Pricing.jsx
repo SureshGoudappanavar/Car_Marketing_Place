@@ -52,43 +52,34 @@ import { CarListing } from './../../../configs/schema';
 import { eq } from 'drizzle-orm';
 function Pricing({ carDetail }) {
   const handleOffer = async () => {
-    // Display a prompt to the user to enter the offer price
     let offerPrice = prompt('Enter your offer price in Dollar:');
-    
     if (offerPrice !== null && offerPrice.trim() !== '') {
-      // User entered a value and it's not empty
       try {
-      
         const result = await db
           .update(CarListing)
-          .set({
-            offerPrice: offerPrice,  // Updating the offerPrice field
-          })
-         
-         .where(eq(CarListing.id,carDetail.id))
+          .set({ offerPrice: offerPrice })
+          .where(eq(CarListing.id, carDetail.id))
           .returning({ id: CarListing.id, offerPrice: CarListing.offerPrice });
 
         console.log('Offer updated successfully:', result);
       } catch (error) {
         console.error('Error updating offer:', error);
       }
-    } else {
-      // User canceled the prompt or entered invalid input
-      console.log('User canceled the prompt or entered an invalid value.');
     }
   };
 
   return (
-    <div className='p-10 rounded-xl border shadow-md'>
-      <h2>Our Price</h2>
-      <h2 className='font-bold text-4xl'>${carDetail?.sellingPrice}</h2>
-      <Button className='w-full mt-7' size='lg' onClick={handleOffer}>
-        <MdLocalOffer className='text-lg mr-2'/>
+    <div className='p-4 sm:p-6 md:p-10 rounded-xl border shadow-md'>
+      <h2 className="text-lg sm:text-xl mb-1">Our Price</h2>
+      <h2 className='font-bold text-3xl sm:text-4xl'>${carDetail?.sellingPrice}</h2>
+      <Button className='w-full mt-6' size='lg' onClick={handleOffer}>
+        <MdLocalOffer className='text-lg mr-2' />
         Make An Offer Price
       </Button>
     </div>
   );
 }
+
 
 export default Pricing;
 

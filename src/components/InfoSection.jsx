@@ -36,12 +36,13 @@ function InfoSection() {
              infotainment options, and eco-friendly alternatives like hybrid and electric models.
           </p>
 
-          <a
-            href="#"
-            className="mt-8 inline-block rounded border border-indigo-600 bg-indigo-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500"
-          >
-            Get in Touch
-          </a>
+         <a
+  href="mailto:sureshpg003@gmail.com?subject=Car Inquiry"
+  className="mt-8 inline-block rounded border border-indigo-600 bg-indigo-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500"
+>
+  Get in Touch
+</a>
+
         </div>
       </div>
     </div>

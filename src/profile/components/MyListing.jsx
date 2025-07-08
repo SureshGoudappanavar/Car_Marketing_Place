@@ -130,78 +130,74 @@ import CarItem from '@/components/Caritem';
 import { FaTrashAlt } from "react-icons/fa";
 
 function MyListing() {
-    const { user } = useUser();
-    const [carList, setCarList] = useState([]);
+  const { user } = useUser();
+  const [carList, setCarList] = useState([]);
 
-    useEffect(() => {
-        user && GetUserCarListing();
-    }, [user]);
+  useEffect(() => {
+    user && GetUserCarListing();
+  }, [user]);
 
-    const GetUserCarListing = async () => {
-        const result = await db
-            .select()
-            .from(CarListing)
-            .leftJoin(CarImages, eq(CarListing.id, CarImages.carListingId))
-            .where(eq(CarListing.createdBy, user?.primaryEmailAddress?.emailAddress))
-            .orderBy(desc(CarListing.id));
+  const GetUserCarListing = async () => {
+    const result = await db
+      .select()
+      .from(CarListing)
+      .leftJoin(CarImages, eq(CarListing.id, CarImages.carListingId))
+      .where(eq(CarListing.createdBy, user?.primaryEmailAddress?.emailAddress))
+      .orderBy(desc(CarListing.id));
 
-        const resp = Service.FormatResult(result);
-        console.log(resp);
-        setCarList(resp); // Store results in state
-    };
+    const resp = Service.FormatResult(result);
+    setCarList(resp);
+  };
 
-    // Function to delete a car listing from the database and update UI
-    const onDeleteCar = async (carId) => {
-        try {
-            // Delete car from CarListing table (it will cascade to CarImages if FK is set to cascade)
-            await db.delete(CarListing).where(eq(CarListing.id, carId));
-            
-            // Update UI by removing the deleted car from carList
-            setCarList(prevList => prevList.filter(car => car.id !== carId));
-        } catch (error) {
-            console.error("Error deleting car:", error);
-        }
-    };
+  const onDeleteCar = async (carId) => {
+    try {
+      await db.delete(CarListing).where(eq(CarListing.id, carId));
+      setCarList(prevList => prevList.filter(car => car.id !== carId));
+    } catch (error) {
+      console.error("Error deleting car:", error);
+    }
+  };
 
-    return (
-        <div className=' mt-6 '>
-            <div className='flex justify-between items-center'>
-                <h2 className='font-bold text-3xl md:text-4xl'>My Listing</h2>
-                <Link to={'/add-listing'}>
-                    <Button>+ Add New Listing</Button>
-                </Link>
+  return (
+    <div className='mt-6 px-4 sm:px-6 md:px-10'>
+      {/* Header Section */}
+      <div className='flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3'>
+        <h2 className='font-bold text-2xl sm:text-3xl md:text-4xl'>My Listings</h2>
+        <Link to={'/add-listing'}>
+          <Button className="w-full sm:w-auto">+ Add New Listing</Button>
+        </Link>
+      </div>
+
+      {/* Responsive Grid for Listings */}
+      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-7'>
+        {carList.map((item, index) => (
+          <div key={index} className='bg-white shadow-md rounded-xl p-4 flex flex-col justify-between'>
+            {/* Car Card */}
+            <CarItem car={item} />
+
+            {/* Actions */}
+            <div className='mt-4 flex flex-col sm:flex-row gap-2'>
+              <Link to={`/add-listing?mode=edit&id=${item?.id}`} className='w-full'>
+                <Button variant="outline" className='w-full'>Edit</Button>
+              </Link>
+              <Button
+                variant="destructive"
+                className='w-full'
+                onClick={() => onDeleteCar(item?.id)}
+              >
+                <FaTrashAlt className='mr-2' />
+                Delete
+              </Button>
             </div>
-
-            {/* Responsive Grid for car listings */}
-            <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-7'>
-                {carList.map((item, index) => (
-                    <div key={index} className='bg-white shadow-md rounded-lg p-4'>
-                        <CarItem car={item} />
-
-                        <div className='p-2 bg-gray-50 rounded-lg flex justify-between gap-3'>
-                            {/* Edit Button */}
-                            <Link to={'/add-listing?mode=edit&id=' + item?.id} className='w-full'>
-                                <Button variant="outline" className='w-full'>Edit</Button>
-                            </Link>
-                            
-                            {/* Delete Button */}
-                            <Button 
-                                variant="destructive" 
-                                className='w-full' 
-                                onClick={() => onDeleteCar(item?.id)}
-                            >
-                                <FaTrashAlt className='mr-2' />
-                                Delete
-                            </Button>
-                        </div>
-                    </div>
-                ))}
-            </div>
-        </div>
-    );
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 }
 
 export default MyListing;
+
 
 
 

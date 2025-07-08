@@ -14,6 +14,7 @@ import AddListing from "./add-listing";
 import SearchByCategory from "./search/[category]";
 import SearchByOptions from "./search";
 import ListingDetail from "./listing-details";
+import About from "./Shared/About";
 
 const router = createBrowserRouter([
   {
@@ -22,7 +23,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/about',
-    element: <Contact/>,
+    element: <About/>,
   },
   ,
   {
