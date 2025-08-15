@@ -1,7 +1,7 @@
 import Header from '@/components/Header'
 import Search from '@/components/Search'
 import { db } from './../../../configs';
-import { CarImages,CarListing } from './../../../configs/schema';
+import { CarImages, CarListing } from './../../../configs/schema';
 import { eq } from 'drizzle-orm';
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
@@ -11,65 +11,61 @@ import CarItem from '@/components/Caritem';
 function SearchByCategory() {
 
   const { category } = useParams();
+  const [carList, setCarList] = useState([]);
 
-  
-const [carList,setCarList]=useState();
-
-useEffect(()=>{
+  useEffect(() => {
     GetCarList();
-},[category])
+  }, [category]);
 
-const GetCarList = async () => {
-  const result = await db
-    .select()
-    .from(CarListing)
-    .innerJoin(CarImages, eq(CarListing.id, CarImages.carListingId))
-     .where(eq(CarListing.Category,category));
+  const GetCarList = async () => {
+    const result = await db
+      .select()
+      .from(CarListing)
+      .innerJoin(CarImages, eq(CarListing.id, CarImages.carListingId))
+      .where(eq(CarListing.Category, category));
 
-  // Log the entire result for debugging
-  const resp=Service.FormatResult(result);
-  setCarList(resp);
-
-
-};
-
-
-
+    const resp = Service.FormatResult(result);
+    setCarList(resp);
+  };
 
   return (
-    <div> 
-    
-       <Header />
-        <div className='p-16 bg-black flex justify-center'>
-        
-          <Search/>
-    </div>
-    <div className='p-10 md:px-20'>
-        <h2 className='font-bold text-4xl '>{category}</h2>
+    <div className="min-h-screen bg-gray-50">
+      <Header />
 
-    {/* List Of CarList */}
-    <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-7 '>
-  {carList?.length > 0 ? (
-    carList.map((item, index) => (
-      <div key={index}>
-        <CarItem car={item} />
+      {/* Search Section */}
+      <div className='px-4 py-8 md:px-16 bg-black flex justify-center'>
+        <Search />
       </div>
-    ))
-  ) : (
-    <> {/* Use fragment to avoid unnecessary wrapper */}
-      {[1, 2, 3, 4, 5, 6].map((item, index) => (
-        <div key={index} className='h-[320px] rounded-xl bg-slate-200 animate-pulse' />
-      ))}
-    </>
-  )}
-</div>
+
+      {/* Category Title */}
+      <div className='px-4 md:px-20 py-6'>
+        <h2 className='font-bold text-3xl md:text-4xl text-gray-900 capitalize'>{category}</h2>
+      </div>
+
+      {/* Car List */}
+      <div className='px-4 md:px-20 pb-10'>
+        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5'>
+          {carList?.length > 0 ? (
+            carList.map((item, index) => (
+              <CarItem key={index} car={item} />
+            ))
+          ) : (
+            // Skeleton Loader for mobile & desktop
+            Array.from({ length: 8 }).map((_, index) => (
+              <div
+                key={index}
+                className='h-64 sm:h-72 md:h-80 rounded-xl bg-slate-200 animate-pulse'
+              />
+            ))
+          )}
+        </div>
+      </div>
     </div>
-    </div>
-    
-  )
+  );
 }
 
-export default SearchByCategory
+export default SearchByCategory;
+
 
 
 // import Header from '@/components/Header';
