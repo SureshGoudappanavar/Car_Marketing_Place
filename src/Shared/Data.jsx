@@ -183,24 +183,13 @@ const CarMakes=[
      
 ]
 
-const Pricing=[
-    {
-        id:1,
-        amount:'$10,000 – $20,000'
-    },
-    {
-        id:2,
-        amount:'$20,000 – $30,000'
-    },
-    {
-        id:3,
-        amount:'$30,000 – $40,000'
-    },
-    {
-        id:4,
-        amount:'$40,000 – $50,000'
-    },
-]
+const Pricing = [
+  { id: 1, amount: '$10,000 – $20,000', min: 10000, max: 20000 },
+  { id: 2, amount: '$20,000 – $30,000', min: 20000, max: 30000 },
+  { id: 3, amount: '$30,000 – $40,000', min: 30000, max: 40000 },
+  { id: 4, amount: '$40,000 – $50,000', min: 40000, max: 50000 }
+];
+
 const Category=[
     {
         id:1,
@@ -263,3 +252,6 @@ export default{
     Pricing,
     Category
 }
+
+
+

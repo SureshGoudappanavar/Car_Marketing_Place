@@ -168,7 +168,7 @@ function CarItem({ car }) {
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-y-4 text-sm mt-2">
             <div className="flex flex-col items-center">
               <LuFuel className="text-lg mb-1" />
-              <h2>{car.mileage} mi</h2>
+              <h2>{car.mileage} </h2>
             </div>
             <div className="flex flex-col items-center">
               <IoSpeedometerOutline className="text-lg mb-1" />
