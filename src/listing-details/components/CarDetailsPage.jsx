@@ -106,24 +106,26 @@ function CarDetailsPage({ carDetail }) {
       )}
 
       {/* Specifications */}
-      <div className="p-4 sm:p-6 border shadow-md rounded-xl">
-        <h2 className="font-medium text-xl sm:text-2xl">Specifications</h2>
-        {carDetail ? (
-          CarSpecification.map((item, index) => (
-            <div
-              key={index}
-              className="mt-4 flex flex-col sm:flex-row sm:justify-between text-sm sm:text-base"
-            >
-              <h2 className="flex gap-2 items-center">
-                <IoMdStarOutline /> {item?.label}
-              </h2>
-              <span>{carDetail?.[item?.name]}</span>
-            </div>
-          ))
-        ) : (
-          <div className="w-full h-[300px] bg-slate-200 animate-pulse rounded-xl mt-4"></div>
-        )}
+  <div className="p-4 sm:p-6 border shadow-md rounded-xl">
+  <h2 className="font-medium text-xl sm:text-2xl mb-4">Specifications</h2>
+
+  {carDetail ? (
+    CarSpecification.map((item, index) => (
+      <div
+        key={index}
+        className="py-2 flex justify-between items-center border-b last:border-b-0 text-sm sm:text-base"
+      >
+        <h2 className="flex gap-2 items-center font-medium text-gray-700">
+          <IoMdStarOutline className="text-gray-500" /> {item?.label}
+        </h2>
+        <span className="text-gray-900 text-right">{carDetail?.[item?.name]}</span>
       </div>
+    ))
+  ) : (
+    <div className="w-full h-[300px] bg-slate-200 animate-pulse rounded-xl mt-4"></div>
+  )}
+</div>
+
 
       {/* Pricing */}
       <div className="p-4 sm:p-6 rounded-xl border shadow-md">

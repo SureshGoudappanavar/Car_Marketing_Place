@@ -169,9 +169,9 @@
 
 // export default CarSearch;
 
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Data from '@/Shared/Data';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Data from "@/Shared/Data";
 import {
   Select,
   SelectContent,
@@ -184,37 +184,47 @@ import { Button } from "@/components/ui/button";
 function CarSearch() {
   const navigate = useNavigate();
 
-  const [carMake, setCarMake] = useState('');
-  const [priceId, setPriceId] = useState('');
+  const [carMake, setCarMake] = useState("");
+  const [priceId, setPriceId] = useState("");
 
   const handleSearch = () => {
     const params = new URLSearchParams();
 
-    if (carMake) params.append('make', carMake);
+    if (carMake) params.append("make", carMake);
 
     if (priceId) {
-      const priceRange = Data.Pricing.find(p => p.id === Number(priceId));
+      const priceRange = Data.Pricing.find(
+        (p) => p.id === Number(priceId)
+      );
       if (priceRange) {
-        params.append('minPrice', priceRange.min);
-        params.append('maxPrice', priceRange.max);
+        params.append("minPrice", priceRange.min);
+        params.append("maxPrice", priceRange.max);
       }
     }
 
     navigate(`/search?${params.toString()}`);
   };
 
+  const handleReset = () => {
+    setCarMake("");
+    setPriceId("");
+  };
+
   return (
     <div className="p-4 bg-white rounded-xl shadow-md w-full max-w-5xl mx-auto">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 items-end">
-
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-end">
+        
         {/* Car Make */}
         <Select value={carMake} onValueChange={setCarMake}>
           <SelectTrigger>
             <SelectValue placeholder="Select Make" />
           </SelectTrigger>
           <SelectContent>
-            {Data.CarMakes.map(make => (
-              <SelectItem key={make.id} value={make.name}>
+            {Data.CarMakes.map((make, index) => (
+              <SelectItem
+                key={`${make.id}-${index}`}
+                value={make.name}
+              >
                 {make.name}
               </SelectItem>
             ))}
@@ -227,8 +237,11 @@ function CarSearch() {
             <SelectValue placeholder="Select Price Range" />
           </SelectTrigger>
           <SelectContent>
-            {Data.Pricing.map(price => (
-              <SelectItem key={price.id} value={price.id}>
+            {Data.Pricing.map((price, index) => (
+              <SelectItem
+                key={`${price.id}-${index}`}
+                value={price.id.toString()}
+              >
                 {price.amount}
               </SelectItem>
             ))}
@@ -237,10 +250,19 @@ function CarSearch() {
 
         {/* Search Button */}
         <Button
-          className="bg-blue-600 hover:bg-blue-700 text-white font-semibold"
+          className="bg-blue-600 hover:bg-blue-700 text-white font-semibold w-full"
           onClick={handleSearch}
         >
           Search
+        </Button>
+
+        {/* Reset Button */}
+        <Button
+          variant="outline"
+          className="w-full"
+          onClick={handleReset}
+        >
+          Reset
         </Button>
       </div>
     </div>
@@ -248,6 +270,8 @@ function CarSearch() {
 }
 
 export default CarSearch;
+
+
 
 
 
