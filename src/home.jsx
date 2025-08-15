@@ -18,7 +18,7 @@ function Home() {
       <Category /> {/* Updated component name */}
       {/* most searched car */}
       
-      <MostSearchedCar/>
+     
       {/* InfoSection */}
 
       <InfoSection/>
