@@ -134,7 +134,7 @@ function MyListing() {
   const [carList, setCarList] = useState([]);
 
   useEffect(() => {
-    user && GetUserCarListing();
+    if (user) GetUserCarListing();
   }, [user]);
 
   const GetUserCarListing = async () => {
@@ -159,30 +159,33 @@ function MyListing() {
   };
 
   return (
-    <div className='mt-6 px-4 sm:px-6 md:px-10'>
+    <div className='mt-6 px-2 sm:px-6 md:px-10 lg:px-16'>
       {/* Header Section */}
       <div className='flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3'>
-        <h2 className='font-bold text-2xl sm:text-3xl md:text-4xl'>My Listings</h2>
-        <Link to={'/add-listing'}>
+        <h2 className='font-bold text-2xl sm:text-3xl md:text-4xl text-center sm:text-left'>My Listings</h2>
+        <Link to={'/add-listing'} className='w-full sm:w-auto'>
           <Button className="w-full sm:w-auto">+ Add New Listing</Button>
         </Link>
       </div>
 
       {/* Responsive Grid for Listings */}
-      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-7'>
-        {carList.map((item, index) => (
-          <div key={index} className='bg-white shadow-md rounded-xl p-4 flex flex-col justify-between'>
+      <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-7 justify-center'>
+        {carList.map((item) => (
+          <div
+            key={item.id}
+            className='bg-white shadow-md rounded-xl p-4 flex flex-col justify-between hover:shadow-xl transition-shadow duration-300 max-w-full sm:max-w-[300px] lg:max-w-[350px] w-full mx-auto'
+          >
             {/* Car Card */}
             <CarItem car={item} />
 
             {/* Actions */}
             <div className='mt-4 flex flex-col sm:flex-row gap-2'>
-              <Link to={`/add-listing?mode=edit&id=${item?.id}`} className='w-full'>
+              <Link to={`/add-listing?mode=edit&id=${item?.id}`} className='w-full sm:w-1/2'>
                 <Button variant="outline" className='w-full'>Edit</Button>
               </Link>
               <Button
                 variant="destructive"
-                className='w-full'
+                className='w-full sm:w-1/2 flex justify-center items-center'
                 onClick={() => onDeleteCar(item?.id)}
               >
                 <FaTrashAlt className='mr-2' />
@@ -192,11 +195,19 @@ function MyListing() {
           </div>
         ))}
       </div>
+
+      {/* Empty State */}
+      {carList.length === 0 && (
+        <div className='mt-10 text-center text-gray-500'>
+          No listings found. Add a new car listing to get started!
+        </div>
+      )}
     </div>
   );
 }
 
 export default MyListing;
+
 
 
 
